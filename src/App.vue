@@ -87,7 +87,7 @@
               this.business_executed = false;
 
               this.nextBusiness()
-            }, 1500)
+            }, 2000)
           } else {
             setTimeout(() => {
               this.nextBusiness()
