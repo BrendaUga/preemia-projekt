@@ -6,10 +6,11 @@
           <business-screen-card v-for="(business, index) in businesses"
                                 :business="business"
                                 :hidden="active_business_index !== index"
-                                :index="index">
+                                :index="index"
+                                :liked="has_been_liked">
           </business-screen-card>
           <business-screen-controls></business-screen-controls>
-          <business-executed></business-executed>
+          <business-executed :hidden="!business_executed"></business-executed>
         </div>
       </div>
     </div>
@@ -65,7 +66,9 @@
             description: 'Analyzing Your Potato. PotatoPersevere is a different kind of potato app.'
           },
         ],
-        active_business_index: 0
+        active_business_index: 0,
+        business_executed: false,
+        has_been_liked: false,
       };
     },
 
@@ -75,10 +78,27 @@
       initializeEventListeners() {
 
         VueEvent.$on('like-pressed', () => {
-          this.nextBusiness()
+
+          this.has_been_liked = true
+          if (this.isBusinessExecuted()) {
+            this.business_executed = true;
+
+            setTimeout(() => {
+              this.business_executed = false;
+
+              this.nextBusiness()
+            }, 1500)
+          } else {
+            setTimeout(() => {
+              this.nextBusiness()
+            }, 100)
+          }
         })
         VueEvent.$on('dislike-pressed', () => {
-          this.nextBusiness()
+          this.has_been_liked = false
+          setTimeout(() => {
+            this.nextBusiness()
+          }, 100)
         })
       },
 
@@ -91,6 +111,10 @@
         }
 
         this.active_business_index = indexes[Math.floor(Math.random() * ((indexes.length - 1) - 0 + 1)) + 0]
+      },
+
+      isBusinessExecuted() {
+        return Math.floor(Math.random() * (2 - 0 + 1)) + 0 === 2
       }
     },
 

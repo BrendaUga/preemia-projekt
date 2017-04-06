@@ -1,8 +1,8 @@
 <template>
   <transition
     name="custom-classes-transition"
-    enter-active-class="animated zoomIn fadeIn"
-    leave-active-class="animated bounceOutLeft"
+    enter-active-class="animated zoomIn"
+    :leave-active-class="'animated ' + leaveAnimationClass"
   >
     <div class="card business-screen-card" v-if="!is_hidden" :data-card-index="index">
       <img class="card-img-top business-screen-img" :src="'/static/img/' + business.picture"
@@ -27,6 +27,7 @@
       business: {required: true},
       hidden: {required: true},
       index: {required: true},
+      liked: { required: true },
     },
 
     data() {
@@ -41,20 +42,11 @@
       }
     },
 
-    methods: {
-      initializeEventListeners() {
-        VueEvent.$on('like-pressed', () => {
-          // Do something
-        })
-        VueEvent.$on('dislike-pressed', () => {
-          // Do something
-        })
+    computed: {
+      leaveAnimationClass() {
+        return this.liked ? 'bounceOutLeft' : 'hinge'
       }
     },
-
-    mounted() {
-      this.initializeEventListeners()
-    }
   }
 </script>
 
@@ -66,10 +58,15 @@
     margin-bottom: 30px;
     margin-top: 5vh;
     position: absolute;
+    z-index: 2;
 
     .business-screen-img {
       width: 100%;
     }
+  }
+
+  .animated.hinge {
+    z-index: 1;
   }
 
 </style>
