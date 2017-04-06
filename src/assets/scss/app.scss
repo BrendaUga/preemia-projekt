@@ -1,0 +1,36 @@
+@import '_variables.scss';
+
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '~animate.css';
+
+@font-face {
+  font-family: 'Impact';
+  src: url('assets/impact.ttf');
+}
+
+/*
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-40px, 0, 0);
+  }
+}
+
+*/
