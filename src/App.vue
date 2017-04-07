@@ -67,24 +67,27 @@
           },
         ],
         active_business_index: 0,
-        business_executed: false,
         has_been_liked: false,
+
+        business_executed: false,
+        hide_business_executed_timeout: null,
       };
     },
 
     components: { BusinessScreenCard, BusinessScreenControls, BusinessExecuted },
 
     methods: {
+
       initializeEventListeners() {
 
         VueEvent.$on('like-pressed', () => {
-
           this.has_been_liked = true
           if (this.isBusinessExecuted()) {
-            this.business_executed = true;
+            this.business_executed = true
+            this.playBusinessSounds()
 
             setTimeout(() => {
-              this.business_executed = false;
+              this.business_executed = false
 
               this.nextBusiness()
             }, 2000)
@@ -94,6 +97,7 @@
             }, 100)
           }
         })
+
         VueEvent.$on('dislike-pressed', () => {
           this.has_been_liked = false
           setTimeout(() => {
@@ -115,6 +119,24 @@
 
       isBusinessExecuted() {
         return Math.floor(Math.random() * (2 - 0 + 1)) + 0 === 2
+      },
+
+      playBusinessSounds() {
+        let airHorn = new Audio('/static/sounds/air_horn.mp3')
+        airHorn.play()
+
+        setTimeout(() => {
+          let chaChing = new Audio('/static/sounds/cha_ching.mp3')
+          chaChing.play()
+          setTimeout(() => {
+            let chaChing = new Audio('/static/sounds/cha_ching.mp3')
+            chaChing.play()
+            setTimeout(() => {
+              let chaChing = new Audio('/static/sounds/cha_ching.mp3')
+              chaChing.play()
+            }, 500)
+          }, 500)
+        }, 1000)
       }
     },
 
