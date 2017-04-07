@@ -1,6 +1,9 @@
 <template>
   <div class="card-controls">
 
+    <div class="control-btn dislike-counter" :class="[ nrOfDislikesClass ]">
+      {{ nr_of_dislikes }}
+    </div>
     <div class="control-btn dislike-btn" @click="handleDislike">
       <svg xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 212.982 212.982" style="enable-background:new 0 0 212.982 212.982;" xml:space="preserve">
             <path style="fill-rule:evenodd;clip-rule:evenodd;" d="M131.804,106.491l75.936-75.936c6.99-6.99,6.99-18.323,0-25.312
@@ -18,11 +21,38 @@
           </svg>
     </div>
 
+    <div class="control-btn like-counter" :class="[ nrOfLikesClass ]">
+      {{ nr_of_likes }}
+    </div>
+
   </div>
 </template>
 
 <script>
   export default {
+
+    props: {
+      nr_of_likes: { required: true },
+      nr_of_dislikes: { required: true },
+    },
+
+    computed: {
+      nrOfLikesClass() {
+        if ((this.nr_of_likes + 1) % 5 === 0) {
+          return 'prepared-for-business animate smallPulse'
+        } else {
+          return ''
+        }
+      },
+
+      nrOfDislikesClass() {
+        if ((this.nr_of_dislikes + 1) % 10 === 0) {
+          return 'prepared-for-danger animate smallPulse'
+        } else {
+          return ''
+        }
+      }
+    },
 
     methods: {
 
@@ -68,6 +98,43 @@
 
   .like-btn svg {
     fill: #4CCC93;
+  }
+
+  .like-counter {
+    cursor: initial;
+  }
+
+  .control-btn.like-counter {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 500;
+    color: #2db4ca;
+    margin-left: -8px;
+    transition: border-color 400ms;
+    -moz-user-select: none;
+    user-select: none;
+
+    &.prepared-for-business {
+      border-color: #2db4ca;
+      animation-delay: 0ms;
+    }
+  }
+
+  .control-btn.dislike-counter {
+    @extend .like-counter;
+    color: #ffd16b;
+    margin-left: 0;
+    margin-right: -8px;
+
+    &.prepared-for-danger {
+      border-color: #ffd16b;
+      animation-delay: 0ms;
+    }
   }
 
 </style>

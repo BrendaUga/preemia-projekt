@@ -1,11 +1,17 @@
 @import '_variables.scss';
 
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '/static/css/makeItRain.css';
 @import '~animate.css';
 
 @font-face {
   font-family: 'Impact';
   src: url('assets/impact.ttf');
+}
+
+
+body {
+  overflow: hidden;
 }
 
 

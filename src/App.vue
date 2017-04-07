@@ -9,7 +9,7 @@
                                 :index="index"
                                 :liked="has_been_liked">
           </business-screen-card>
-          <business-screen-controls></business-screen-controls>
+          <business-screen-controls :nr_of_likes="nr_of_likes" :nr_of_dislikes="nr_of_dislikes"></business-screen-controls>
           <business-executed :hidden="!business_executed"></business-executed>
         </div>
       </div>
@@ -68,6 +68,8 @@
         ],
         active_business_index: 0,
         has_been_liked: false,
+        nr_of_likes: 0,
+        nr_of_dislikes: 0,
 
         business_executed: false,
         hide_business_executed_timeout: null,
@@ -82,6 +84,8 @@
 
         VueEvent.$on('like-pressed', () => {
           this.has_been_liked = true
+          this.nr_of_likes++
+
           if (this.isBusinessExecuted()) {
             this.business_executed = true
             this.playBusinessSounds()
@@ -90,7 +94,7 @@
               this.business_executed = false
 
               this.nextBusiness()
-            }, 2000)
+            }, 3000)
           } else {
             setTimeout(() => {
               this.nextBusiness()
@@ -100,6 +104,7 @@
 
         VueEvent.$on('dislike-pressed', () => {
           this.has_been_liked = false
+          this.nr_of_dislikes++
           setTimeout(() => {
             this.nextBusiness()
           }, 100)
@@ -118,12 +123,13 @@
       },
 
       isBusinessExecuted() {
-        return Math.floor(Math.random() * (2 - 0 + 1)) + 0 === 2
+        return this.nr_of_likes % 5 === 0
       },
 
       playBusinessSounds() {
         let airHorn = new Audio('/static/sounds/air_horn.mp3')
         airHorn.play()
+        $('body').makeItRain()
 
         setTimeout(() => {
           let chaChing = new Audio('/static/sounds/cha_ching.mp3')
