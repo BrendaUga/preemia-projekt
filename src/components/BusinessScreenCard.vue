@@ -5,7 +5,7 @@
     :leave-active-class="'animated ' + leaveAnimationClass"
   >
     <div class="card business-screen-card" v-if="!is_hidden" :data-card-index="index">
-      <img class="card-img-top business-screen-img" :src="'/static/img/' + business.picture"
+      <img class="card-img-top business-screen-img" :src="'static/img/' + business.picture"
            :alt="business.name + 'picture'">
       <div class="card-block">
 

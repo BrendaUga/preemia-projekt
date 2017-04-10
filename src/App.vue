@@ -127,18 +127,18 @@
       },
 
       playBusinessSounds() {
-        let airHorn = new Audio('/static/sounds/air_horn.mp3')
+        let airHorn = new Audio('static/sounds/air_horn.mp3')
         airHorn.play()
         $('body').makeItRain()
 
         setTimeout(() => {
-          let chaChing = new Audio('/static/sounds/cha_ching.mp3')
+          let chaChing = new Audio('static/sounds/cha_ching.mp3')
           chaChing.play()
           setTimeout(() => {
-            let chaChing = new Audio('/static/sounds/cha_ching.mp3')
+            let chaChing = new Audio('static/sounds/cha_ching.mp3')
             chaChing.play()
             setTimeout(() => {
-              let chaChing = new Audio('/static/sounds/cha_ching.mp3')
+              let chaChing = new Audio('static/sounds/cha_ching.mp3')
               chaChing.play()
             }, 500)
           }, 500)

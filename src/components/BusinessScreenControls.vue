@@ -36,21 +36,59 @@
       nr_of_dislikes: { required: true },
     },
 
+    data() {
+      return {
+        likes_received: false,
+        dislikes_received: false,
+      }
+    },
+
+    watch: {
+      nr_of_likes() {
+        this.likes_received = true
+        setTimeout(() => {
+          this.likes_received = false
+        }, 300)
+      },
+
+      nr_of_dislikes() {
+        this.dislikes_received = true
+        setTimeout(() => {
+          this.dislikes_received = false
+        }, 300)
+      }
+    },
+
     computed: {
       nrOfLikesClass() {
-        if ((this.nr_of_likes + 1) % 5 === 0) {
-          return 'prepared-for-business animate smallPulse'
-        } else {
-          return ''
+        let className = ''
+        if (this.likes_received) {
+          className += 'is-bigger '
         }
+
+        if ((this.nr_of_likes + 1) % 5 === 0) {
+          className += 'prepared-for-business animate smallPulse'
+        } else {
+          className += ''
+        }
+
+        return className
       },
 
       nrOfDislikesClass() {
-        if ((this.nr_of_dislikes + 1) % 10 === 0) {
-          return 'prepared-for-danger animate smallPulse'
-        } else {
-          return ''
+
+        let className = ''
+        if (this.dislikes_received) {
+          className += 'is-bigger '
         }
+
+        if ((this.nr_of_dislikes + 1) % 10 === 0) {
+          className += 'prepared-for-danger animate smallPulse'
+        } else {
+          className += ''
+        }
+
+        return className
       }
     },
 
@@ -115,9 +153,14 @@
     font-weight: 500;
     color: #2db4ca;
     margin-left: -8px;
-    transition: border-color 400ms;
+    transition: border-color 400ms, transform 300ms;
     -moz-user-select: none;
     user-select: none;
+    transform: scale3d(1, 1, 1);
+
+    &.is-bigger {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
 
     &.prepared-for-business {
       border-color: #2db4ca;
