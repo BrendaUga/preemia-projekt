@@ -57,13 +57,37 @@
             picture: 'business-5.png',
             cash: '$10 000 000',
             name: 'Spillr',
-            description: 'THE EFFICIENT WAY TO SPILL. Spilling just got a whole lot better…'
+            description: 'THE EFFICIENT WAY TO SPILL. Spilling just got a whole lot better.'
           },
           {
             picture: 'business-6.png',
             cash: '$1 000 000 000',
             name: 'PotatoPersevere',
             description: 'Analyzing Your Potato. PotatoPersevere is a different kind of potato app.'
+          },
+          {
+            picture: 'business-7.png',
+            cash: '$1 000 000',
+            name: 'Knowledgely',
+            description: 'Knowledgely was created to help you find pieces of knowledge in your area. From local pieces of knowledge to national brands, no one knows pieces of knowledge like Knowledgely. No one.'
+          },
+          {
+            picture: 'business-8.png',
+            cash: '$50 000 000',
+            name: 'PetSmart',
+            description: 'We're a health tracker for household pets. Manage your pet's health online, with our cloud software.'
+          },
+          {
+            picture: 'business-9.png',
+            cash: '$150 000',
+            name: 'Loveify',
+            description: 'Do You Love? Loveify is why you'll never love the same way again.'
+          },
+          {
+            picture: 'business-10.png',
+            cash: '$10 000',
+            name: 'PlantLink',
+            description: 'EASY. PERFECT. EXCLUSIVE. PlantLink is a place for people who enjoy planting to connect. Find local planting events or just share your favorite tips and stories with others who love to plant.'
           },
         ],
         active_business_index: 0,
