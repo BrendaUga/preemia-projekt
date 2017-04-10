@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="'filter: grayscale(' + likePercentage + '%);'">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6 app-container">
@@ -78,6 +78,16 @@
 
     components: { BusinessScreenCard, BusinessScreenControls, BusinessExecuted },
 
+    computed: {
+      likePercentage() {
+        if (this.nr_of_likes < this.nr_of_dislikes) {
+          let percent = 100 - (this.nr_of_likes / this.nr_of_dislikes) * 100
+          return percent
+        }
+        return 0
+      }
+    },
+
     methods: {
 
       initializeEventListeners() {
@@ -155,4 +165,8 @@
 
 <style lang="scss">
   @import 'assets/scss/app.scss';
+
+  #app {
+    min-height: 100vh;
+  }
 </style>
