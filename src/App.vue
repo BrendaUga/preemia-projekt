@@ -75,13 +75,13 @@
             picture: 'business-8.png',
             cash: '$50 000 000',
             name: 'PetSmart',
-            description: 'We're a health tracker for household pets. Manage your pet's health online, with our cloud software.'
+            description: 'We\'re a health tracker for household pets. Manage your pet\'s health online, with our cloud software.'
           },
           {
             picture: 'business-9.png',
             cash: '$150 000',
             name: 'Loveify',
-            description: 'Do You Love? Loveify is why you'll never love the same way again.'
+            description: 'Do You Love? Loveify is why you\'ll never love the same way again.'
           },
           {
             picture: 'business-10.png',
